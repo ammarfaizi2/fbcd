@@ -1,0 +1,12 @@
+{
+    "name": "root/fbpk",
+    "description": "Facebook Packages",
+    "license": "RedAngel PHP Concept",
+    "authors": [
+        {
+            "name": "Ammar Faizi",
+            "email": "ammarfaizi2@gmail.com"
+        }
+    ],
+    "require": {}
+}
