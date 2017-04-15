@@ -4,6 +4,7 @@ use System\Core;
 
 class Crayner_Machine extends Core
 {
+	const UA = "Mozilla/5.0 (Windows NT 6.1; rv:50.0) Gecko/20100101 Firefox/50.0";
 	public static function curl($url,$post=null,$cookie=null,$opt=null,$rt=null)
 	{
 		$ch = curl_init($url);
