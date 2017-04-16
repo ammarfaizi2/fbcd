@@ -17,19 +17,16 @@ class Facebook extends Crayner_Machine
 		if($user===null){
 			$email = explode("@",$email);
 			$this->user = $email[0];
-			$this->cookies = 'data/cookies/'.$email[0].'.txt';
 		} else {
 			$this->user = $user;
-			$this->cookies = 'data/cookies/'.$user.'.txt';
 		}
-		if(!file_exists($this->cookies)){
-			ffc($this->cookies,'');
-		}
-		$this->cookies = realpath(__DIR__.'/..').$this->cookies;
+		is_dir('data') or mkdir('data');
+		is_dir('data/cookies') or mkdir('data/cookies');
+		$this->cookies = 'data/cookies/'.$this->user.'.txt';
 	}
 	public function go_to($url,$post=null,$op=null)
 	{
-		$a = $this->curl($url,$post,$this->cookies,$op,'all');
+		$a = $this->curl($url,$post,getcwd().'/'.$this->cookies,$op,'all');
 		if(isset($a[1]['redirect_url']) and !empty($a[1]['redirect_url'])){
 			$a = $this->curl($a[1]['redirect_url'],null,$this->cookies,$op);
 		} else {
@@ -41,7 +38,7 @@ class Facebook extends Crayner_Machine
 	{
 		$furl = "https://m.facebook.com/";
 		$a = $this->go_to($furl);
-		$a = file_get_contents('aa');
+	#	$a = file_get_contents('aa');
 		$s = explode("type=\"submit\"",$a,2);
 		$s = explode("<",$s[0]);
 		$s = explode("value=\"",end($s));
