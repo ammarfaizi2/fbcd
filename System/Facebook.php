@@ -17,14 +17,15 @@ class Facebook extends Crayner_Machine
 		if($user===null){
 			$email = explode("@",$email);
 			$this->user = $email[0];
-			$this->cookies = realpath(__DIR__.'/..').'/data/cookies/'.$email[0].'.txt';
+			$this->cookies = 'data/cookies/'.$email[0].'.txt';
 		} else {
 			$this->user = $user;
-			$this->cookies = realpath(__DIR__.'/..').'/data/cookies/'.$user.'.txt';
+			$this->cookies = 'data/cookies/'.$user.'.txt';
 		}
 		if(!file_exists($this->cookies)){
 			ffc($this->cookies,'');
 		}
+		$this->cookies = realpath(__DIR__.'/..').$this->cookies;
 	}
 	public function go_to($url,$post=null,$op=null)
 	{
